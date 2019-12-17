@@ -32,7 +32,7 @@ mWebView.loadUrl(url);
         
 ```
 
-![图片名称](/app/src/main/res/mipmap-hdpi/ic_launcher.png  "picture")
+![图片名称](/app/src/main/res/drawable/show.png  "picture")
 
 
 
