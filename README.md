@@ -1,37 +1,41 @@
-## Welcome to GitHub Pages
+## 安卓通过调用JS去调用StompSocket
 
-You can use the [editor on GitHub](https://github.com/fivepi/StompJsAndroid/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+新建一个html文件test，把所有js文件引进来
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+```html
+<!DOCTYPE html>
 
-### Markdown
+<html>
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title></title>
+</head>
+<body>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<script src="js/message.js"></script>
 
-```markdown
-Syntax highlighted code block
+<script src="js/stomp.min.js"></script>
 
-# Header 1
-## Header 2
-### Header 3
+<script src="js/sockjs.min.js"></script>
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+</body>
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+在Activity里面配置
+```java
+mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(new JsToJava(), "stub");  //JsToJava是内部类，代码在后面。stub是接口名字。
+        mWebView.loadUrl("file:///android_asset/test.html"); //加载本地html文件
+        
+String url = "javascript:connect('http://newh5.ly9900.com/message/access','33333333333:12345655555','24','3')"; //调用js connect方法
+mWebView.loadUrl(url);
+        
+```
 
-### Jekyll Themes
+![图片名称](/app/src/main/res/mipmap-hdpi/ic_launcher.png  "picture")
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fivepi/StompJsAndroid/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+
+
